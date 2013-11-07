@@ -9,6 +9,8 @@
 #define ST_OUT 1
 #define ANSWERNAME "answer"
 
+// AP: задание - составьте график зависимости времени работы от m для матриц болього размера и с RESTRICT = 1000
+
 struct targ {
 	int n; // matrix size
 	int repeat; // how many operations this thread has to carry out
@@ -19,6 +21,7 @@ struct targ {
 };
 
 void* threadf (void * temporal){ // the thread function
+	// AP: используйте оператор -> вместо .
 	struct targ * arguments = (struct targ *) temporal;
 	int j;
 	int res, i;
@@ -75,6 +78,7 @@ int main(int argc, char* argv[]){
 
 	size_t size;
 	int counter = 0;
+	// AP: организуетй чтение с произвольным буфером, а не по одной цифре
 	while((size = read(fd, matrix+counter, integer)) != 0){ // reading the matrix file into one big array
 		if(size != integer){
 			printf("Error:cannot read the matrix file\n");
@@ -150,11 +154,14 @@ int main(int argc, char* argv[]){
 		exit(-1);
 	}
 
+	// AP: объясните почему result, находящийся в динмаической памяти, тем не менее содержит в себе результаты работы всех потоков - разделяется же только статическая память
 	for(k = 0; k < counter; k++){
 		printf("%d ", *(result + k));
 		if((k+1)%n == 0){
 			printf("\n");
 		}
 	}
+	// AP: а где определение времени работы?
+	
 	return 0;
 }
