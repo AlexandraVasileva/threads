@@ -14,6 +14,7 @@ int main(int argc, char* argv[]){
 		exit(-1);
 	}
 
+	// AP: не обязтельно обнулять errno - как правильно?
 	errno = 0; // getting the number from argument
 	int step = sizeof(char);
 	char** unvalid = (char**)malloc(step);
